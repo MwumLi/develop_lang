@@ -1,0 +1,19 @@
+//: C02:GetWords.cpp
+//Break a file into whitespace-separated words
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	vector<string>	words;
+	string word;
+	ifstream in("GetWords.cpp");
+
+	while(in >> word)
+		words.push_back(word);
+	for(int i=0; i<words.size(); i++)
+		cout << words[i] << endl;
+}///:~
