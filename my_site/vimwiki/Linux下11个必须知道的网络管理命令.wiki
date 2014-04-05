@@ -1,0 +1,7 @@
+=== curl & wget ===
+	还在沉浸于apt-get吗？别局限眼前啊，使用curl或wget命令，同样可以下载文件。如果你使用curl,键入curl -O后面进更一个文件路径;wget则不需要任何选项，下载的文件在当前目录。对了，wget是可以多个任务同时进行哦！
+
+	{{{
+		curl -O website.com/file
+		wget website.com.file
+	}}}

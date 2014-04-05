@@ -1,0 +1,2 @@
+Today is 3/7
+It's the first day that I use the vimwiki diary

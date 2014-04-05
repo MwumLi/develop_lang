@@ -1,0 +1,102 @@
+%toc 目录
+</hr />
+== Git初始 == 
+=== 版本控制(VCS)===
+{{{
+版本控制是一种记录一个或若干文件内容变化,以便将来查阅特定版本修订情况的系统
+RCS-->CVCS-->DVCS,于是Git出现了
+}}}
+=== Git的介绍 ===	
+==== 三种状态 ====
+{{{
+* committed(已提交)->文件已经被安全地存放在本地仓库
+* modified(已经修改)->已经修改了某文件，但还没有提交保存
+* staged(已经暂存)->把已修改的文件放在下次提交时候要保存的清单中
+}}}
+==== 重要的Git目录 ====
+{{{
+每一个项目都有一个Git目录(如果git clone出来的话，就是其中的.git目录;如果git clone -bare的话，新建的目录本身就是Git目录)
+它是Git保存与元数据和对象数据库的地方.该目录非常重要，每次克隆镜像仓库的时候，实际拷贝的就是这个目录里面的数据.
+}}}
+==== 用于编辑的工作目录 ====
+{{{
+从项目中取出某个版本的所有文件和目录,用以后续工作的叫做工作目录
+这些文件和数据实际上就是Git目录中的压缩对象数据库中提取出来的，接下来就可以在工作目录对这些文件进行编辑了。
+}}}
+==== 暂存目录 ====
+{{{
+所谓的暂存目录不过是个简单的文件，一般都放在Git目录中。
+有时候人们会把这个目录称作暂存文件，不过标准的叫法还是叫暂存区域
+}}}
+==== Git的基本工作流程 ====
+# 在工作目录中修改某些文件
+# 对修改后的文件进行快照，然后保存在暂存区域
+# 提交更新，将保存在暂存区域的文件快照永久转储到Git目录中
+<hr />
+== Git的安装和初次运行配置 ==
+====Git的安装(Ubuntu下)====
+{{{
+	sudo apt-get install git
+}}}
+==== 初次运行Git前的配置 ====
+{{{
+一般的新的系统，我们都需要配置下自己的Git工作环境。配置一次，以后升级时还会沿用现在的配置。
+当然，如果需要，你随时可以用相同的命令修改已有的配置。
+Git提供了一个git config的工具,专门用来配置或读取相应的工作环境变量.
+（实际上git config只是调用了Git目录下的一个名叫git-config.sh的脚本）
+而正是因为这些环境变量，决定了Git在各个环节的具体工作方式和行为。这些变量可以存放在一下三个不同的地方:
+* /etc/gitconig: 系统对所有用户都普遍使用的配置。若使用git config --system，读写的就是这个文件
+* ~/.gitconfig: 用户目录下的配置文件只使用与该用户。若使用git config --global，读写的就是这个文件
+* 当前项目的git目录下的.git/config: 仅对这个当前项目有效
+每一个级别的配置都会覆盖上层的相同配置，所以.git/config里的选项会覆盖/etc/gitconfig中的同名配置.
+}}}
+==== 开始配置 ====
+* 用户信息(挺重要的，指明谁提交了更新)
+	- 用户名字 	
+{{{
+$ git config --global user.name MwumLi 
+}}}
+	- 用户电子邮件地址 
+{{{
+$ git config --global user.email
+}}}
+* 文本编辑器(设置默认使用的编辑器，一般系统默认的是Vi或者Vim) 
+{{{
+$ git config --global core.editor emacs
+Git需要你输入一些额外消息的时候，会自动调用一个外部文本编辑器给你用
+这个根据你特定喜好了，呵呵
+}}}
+* 差异分析工具(在解决合并冲突的时候使用那种差异分析工具)  	
+{{{
+$ git config --global merge.tool vimdiff<br />
+Git可以理解kdiff3,tkdiff,meld,xxdiff,emerge,vimdiff,gvimdiff等合并工具的输出信息
+额，好像都没听过啊，不过，没关系，我们还是认识vimdiff的，嘿嘿
+}}}
+==== 查看配置和寻求工具帮助 ====
+# 查看配置信息
+	* 查看全部配置信息
+{{{
+$ git config --list
+user.name=MwumLi
+user.email=mwumli@hotmail.com
+core.editor=vim
+merge.tool=vimdiff
+color.status=auto
+color.branch=auto
+color.interactive=auto
+color.diff=auto
+}}}
+	* 一个一个查看信息
+{{{
+$ git config user.name
+MwumlLi
+ }}}
+# 了解Git各式工具的用法(使用help和man)
+{{{
+$ git help <tool> 
+$ git <tool> --help
+$ man git-<verb>
+}}}
+<hr />
+== [[git_start|Git基础]] ==
+
