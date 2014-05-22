@@ -1,0 +1,2 @@
+the presence of a (non-virtual) member function does not affect the size of a struct. 
+

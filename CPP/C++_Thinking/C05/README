@@ -1,0 +1,1 @@
+对于友元函数来说，访问控制符对其并无影响，即假如一个全局函数func是一个类的y友元函数，无论在func在public 还是 protected 或者 private，都不会影响func的正常调用.
